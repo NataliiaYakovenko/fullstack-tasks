@@ -16,7 +16,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        filed: 'user_id',
+        field: 'user_id',
         references: {
           model: 'users',
           key: 'id',
@@ -39,7 +39,7 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        filed: "updated_at"
+        field: "updated_at"
       },
     });
   },
