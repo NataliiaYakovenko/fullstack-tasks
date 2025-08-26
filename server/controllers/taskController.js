@@ -13,3 +13,19 @@ module.exports.createTask = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.getTasks = async (req, res, next) => {
+  try {
+    const foundTasks = await Task.findAll({
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
+    if (!foundTasks) {
+      res.status(404).send('Tasks not found');
+    }
+    res.status(200).send({ data: foundTasks });
+  } catch (error) {
+    next(error);
+  }
+};

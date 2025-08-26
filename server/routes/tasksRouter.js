@@ -7,6 +7,7 @@ const tasksRouter = Router();
 tasksRouter
   .route('/')
   .post(validateTask,taskController.createTask)
+  .get(taskController.getTasks)
 
 
 
