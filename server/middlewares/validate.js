@@ -1,7 +1,6 @@
 const USER_VALIDATE_SCHEMA = require('../schema/validateUser');
 const TASK_VALIDATE_SCHEMA = require('../schema/validateTask');
 
-
 module.exports.validateUser = async (req, res, next) => {
   try {
     const { body } = req;
