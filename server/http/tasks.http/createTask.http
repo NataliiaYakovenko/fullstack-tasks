@@ -1,0 +1,9 @@
+POST http://localhost:5000/api/tasks
+Content-Type: application/json
+
+{
+    "body":"Go to the cinema",
+    "userId": 1,
+    "deadline": "2025-07-31",
+    "isDone": false
+}
