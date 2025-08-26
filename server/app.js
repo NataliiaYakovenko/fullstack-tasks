@@ -1,3 +1,4 @@
+const cors = require('cors')
 const express = require("express");
 const router = require("./routes/index");
 const { errorHandlers } = require("./middlewares/errorHandlers");
