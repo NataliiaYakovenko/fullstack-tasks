@@ -7,5 +7,6 @@ const usersRouter = Router();
 usersRouter
     .route('/')
      .post(validateUser,userController.createUser)
+     .get(userController.getUsers)
 
 module.exports = usersRouter;
