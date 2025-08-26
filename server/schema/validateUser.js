@@ -1,7 +1,7 @@
 const yup = require("yup");
 
 const USER_VALIDATE_SCHEMA = yup.object({
-  firstNmae: yup
+  firstName: yup
     .string()
     .trim()
     .required()
@@ -15,7 +15,7 @@ const USER_VALIDATE_SCHEMA = yup.object({
     .min(2)
     .max(64)
     .matches(/^[A-Z][a-z]+$/, "The first letter must be capital"),
-  email: yup.email().required(),
+  email: yup.string().email().required(),
   birthday: yup.date().max(new Date()).required(),
   numberPhone: yup
     .string()

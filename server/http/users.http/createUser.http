@@ -1,0 +1,11 @@
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+   "firstName": "Roll",
+   "lastName": "Rollovich",
+   "email":"roll@gmail.com",
+   "birthday": "1998-12-27",
+   "numberPhone": "+380675438899",
+   "gender":"male"
+}
