@@ -1,5 +1,5 @@
 "use strict";
-const { Model } = require("sequelize");
+const { Model, STRING } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -45,8 +45,21 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isBefore: new Date().toISOString(),
         },
+        allowNull: false,
       },
-      allowNull: false,
+      numberPhone: {
+        type: DataTypes.STRING(13),
+        field: "number_phone",
+        allowNull: false,
+        unique: true,
+        validate: {
+          is: /^\+380\d{9}$/,
+        },
+      },
+      gender: {
+        type: DataTypes.ENUM("male", "female", "another"),
+        allowNull: false,
+      },
     },
     {
       sequelize,

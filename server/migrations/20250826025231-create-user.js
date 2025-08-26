@@ -22,22 +22,28 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
         unique: true,
-       
       },
       birthday: {
         type: Sequelize.DATEONLY,
-        allowNull: true
-
+        allowNull: true,
+      },
+      numberPhone: {
+        type: Sequelize.STRING(13),
+        allowNull: false,
+      },
+      gender: {
+        type: Sequelize.ENUM("male", "female", "another"),
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        field:"created_at"
+        field: "created_at",
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        field:"updated_at"
+        field: "updated_at",
       },
     });
   },
