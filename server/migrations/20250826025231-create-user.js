@@ -11,6 +11,7 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING(64),
+        field: "first_name",
         allowNull: false,
       },
       lastName: {
@@ -29,6 +30,7 @@ module.exports = {
       },
       numberPhone: {
         type: Sequelize.STRING(13),
+        field: "number_phone",
         allowNull: false,
       },
       gender: {
