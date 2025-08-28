@@ -1,11 +1,12 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
+import { connect } from 'react-redux';
 import TASK_VALIDATE_SCHEMA from '../../schemas/validateTask';
 
-function TasksForm() {
+function TasksForm({ users }) {
   const initialValues = {
     body: '',
-    userId: '1',
+    userId: users[0]?.id ?? '',
     deadline: '',
     isDone: false,
   };
@@ -25,23 +26,22 @@ function TasksForm() {
         <Form>
           <h1>TASK FORM</h1>
 
-          <label>User name</label>
-          <select
-            name="userId"
-            value={formProps.values.userId}
-            onChange={formProps.handleChange}
-          >
-            {[
-              { id: '1', firstName: 'Alina' },
-              { id: '2', firstName: 'Richard' },
-              { id: '3', firstName: 'Zak' },
-              { id: '4', firstName: 'Roll' },
-            ].map((u) => (
-              <option key={u.id} value={u.id}>
-                {u.firstName}
-              </option>
-            ))}
-          </select>
+          {users.length !== 0 && (
+            <>
+              <label>User name</label>
+              <select
+                name="userId"
+                value={formProps.values.userId}
+                onChange={formProps.handleChange}
+              >
+                {users.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.firstName}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
 
           <br />
           <label>
@@ -73,5 +73,6 @@ function TasksForm() {
     </Formik>
   );
 }
+const mapStateToProps = ({ tasksData: { users } }) => ({ users });
 
-export default TasksForm;
+export default connect(mapStateToProps)(TasksForm);
