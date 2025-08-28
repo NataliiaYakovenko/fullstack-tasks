@@ -10,13 +10,26 @@ const initialState = {
   error: null,
 };
 
-export const getTaskThunk = createAsyncThunk(
+export const getTasksThunk = createAsyncThunk(
   `${TASK_SLICE_NAME}/get/tasks`,
   async (payload, { rejectWithValue }) => {
     try {
       const {
         data: { data },
       } = await API.getTasks();
+      return data;
+    } catch (error) {
+      return rejectWithValue({ error: error.response.data });
+    }
+  }
+);
+export const getUsersThunk = createAsyncThunk(
+  `${TASK_SLICE_NAME}/get/users`,
+  async (payload, { rejectWithValue }) => {
+    try {
+      const {
+        data: { data },
+      } = await API.getUsers();
       return data;
     } catch (error) {
       return rejectWithValue({ error: error.response.data });
@@ -30,7 +43,7 @@ export const createTaskThunk = createAsyncThunk(
     try {
       const {
         data: { data },
-      } = await API.createTask();
+      } = await API.createTask(payload);
       return data;
     } catch (error) {
       return rejectWithValue({ error: error.response.data });
@@ -42,17 +55,30 @@ const tasksSlice = createSlice({
   name: TASK_SLICE_NAME,
   initialState,
   extraReducers: (bulder) => {
-    bulder.addCase(getTaskThunk.pending, (state) => {
+    bulder.addCase(getTasksThunk.pending, (state) => {
       state.isFetching = true;
       state.error = null;
     });
-    bulder.addCase(getTaskThunk.fulfilled, (state, { payload }) => {
+    bulder.addCase(getTasksThunk.fulfilled, (state, { payload }) => {
       state.tasks = [...payload];
       state.error = null;
     });
-    bulder.addCase(getTaskThunk.rejected, (state, { payload }) => {
+    bulder.addCase(getTasksThunk.rejected, (state, { payload }) => {
       state.error = payload;
     });
+
+    bulder.addCase(getUsersThunk.pending, (state) => {
+      state.isFetching = true;
+      state.error = null;
+    });
+    bulder.addCase(getUsersThunk.fulfilled, (state, { payload }) => {
+      state.users = [...payload];
+      state.error = null;
+    });
+    bulder.addCase(getUsersThunk.rejected, (state, { payload }) => {
+      state.error = payload;
+    });
+
     bulder.addCase(createTaskThunk.pending, (state) => {
       state.isFetching = true;
       state.error = null;

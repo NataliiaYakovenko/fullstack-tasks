@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { connect } from 'react-redux';
 import TASK_VALIDATE_SCHEMA from '../../schemas/validateTask';
+import {
+  createTaskThunk,
+  getTasksThunk,
+  getUsersThunk,
+} from '../../store/tasksSlice/tasksSlice';
 
-function TasksForm({ users }) {
+function TasksForm({ users, getTasks, getUsers, createTask }) {
   const initialValues = {
     body: '',
     userId: users[0]?.id ?? '',
@@ -13,8 +18,14 @@ function TasksForm({ users }) {
 
   const submitHandler = (values, formikBag) => {
     console.log('values', values);
+    createTask(values);
     formikBag.resetForm();
   };
+
+  useEffect(() => {
+    getTasks();
+    getUsers();
+  }, [getTasks, getUsers]);
 
   return (
     <Formik
@@ -60,11 +71,11 @@ function TasksForm({ users }) {
             <Field name="deadline" type="date" />
           </label>
 
-          {/* <br />
+          <br />
           <label>
             Is done
             <Field name="isDone" type="checkbox" />
-          </label> */}
+          </label>
 
           <br />
           <button type="submit">SEND</button>
@@ -73,6 +84,13 @@ function TasksForm({ users }) {
     </Formik>
   );
 }
+
 const mapStateToProps = ({ tasksData: { users } }) => ({ users });
 
-export default connect(mapStateToProps)(TasksForm);
+const mapDispatchToProps = (dispatch) => ({
+  getTasks: () => dispatch(getTasksThunk()),
+  getUsers: () => dispatch(getUsersThunk()),
+  createTask: (values) => dispatch(createTaskThunk(values)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TasksForm);
