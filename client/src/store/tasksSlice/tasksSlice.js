@@ -51,7 +51,17 @@ export const createTaskThunk = createAsyncThunk(
   }
 );
 
-
+export const deleteTaskThunk = createAsyncThunk(
+  `${TASK_SLICE_NAME}/delete`,
+  async (id, { rejectWithValue }) => {
+    try {
+       await API.deleteTask(id);
+      return id;
+    } catch (error) {
+      return rejectWithValue({ error: error.response.data });
+    }
+  }
+);
 
 const tasksSlice = createSlice({
   name: TASK_SLICE_NAME,
@@ -69,7 +79,6 @@ const tasksSlice = createSlice({
       state.error = payload;
     });
 
-
     bulder.addCase(getUsersThunk.pending, (state) => {
       state.isFetching = true;
       state.error = null;
@@ -82,7 +91,6 @@ const tasksSlice = createSlice({
       state.error = payload;
     });
 
-    
     bulder.addCase(createTaskThunk.pending, (state) => {
       state.isFetching = true;
       state.error = null;
@@ -93,6 +101,20 @@ const tasksSlice = createSlice({
       state.error = null;
     });
     bulder.addCase(createTaskThunk.rejected, (state, { payload }) => {
+      state.error = payload;
+      state.isFetching = false;
+    });
+
+    bulder.addCase(deleteTaskThunk.pending, (state) => {
+      state.isFetching = true;
+      state.error = null;
+    });
+    bulder.addCase(deleteTaskThunk.fulfilled, (state, { payload:id }) => {
+      state.tasks = state.tasks.filter((task) => task.id !== id);
+      state.isFetching = false;
+      state.error = null;
+    });
+    bulder.addCase(deleteTaskThunk.rejected, (state, { payload }) => {
       state.error = payload;
       state.isFetching = false;
     });

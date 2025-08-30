@@ -1,19 +1,24 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
+  deleteTaskThunk,
   getTasksThunk,
   getUsersThunk,
 } from '../../store/tasksSlice/tasksSlice';
 
 const TasksList = ({
   users,
-  tasks,userId,body,deadline,isDone, getTasks,getUsers,}) => {
-
-    
+  tasks,
+  isFetching,
+  error,
+  getTasks,
+  getUsers,
+  deleteTask,
+}) => {
   useEffect(() => {
     getTasks();
     getUsers();
-  }, [getTasks, getUsers]);
+  }, []);
 
   return (
     <ul>
@@ -26,6 +31,13 @@ const TasksList = ({
           <p>{t.body}</p>
           <p>{t.deadline}</p>
           <p>{t.isDone}</p>
+          <button
+            onClickCapture={() => {
+              deleteTask(t.id);
+            }}
+          >
+            DELETE
+          </button>
         </li>
       ))}
     </ul>
@@ -36,6 +48,7 @@ const mapStateToProps = ({ tasksData }) => tasksData;
 const mapDispatchToProps = (dispatch) => ({
   getTasks: () => dispatch(getTasksThunk()),
   getUsers: () => dispatch(getUsersThunk()),
+  deleteTask: (id) => dispatch(deleteTaskThunk(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksList);
