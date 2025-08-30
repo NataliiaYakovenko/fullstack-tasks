@@ -47,7 +47,7 @@ function TasksForm({ users, getTasks, getUsers, createTask }) {
               >
                 {users.map((u) => (
                   <option key={u.id} value={u.id}>
-                    {u.firstName}
+                    {u.firstName} {u.lastName}
                   </option>
                 ))}
               </select>
@@ -70,12 +70,12 @@ function TasksForm({ users, getTasks, getUsers, createTask }) {
             Deadline
             <Field name="deadline" type="date" />
           </label>
-
+{/* 
           <br />
           <label>
             Is done
             <Field name="isDone" type="checkbox" />
-          </label>
+          </label> */}
 
           <br />
           <button type="submit">SEND</button>
