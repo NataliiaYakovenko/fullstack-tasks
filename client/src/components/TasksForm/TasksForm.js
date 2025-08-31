@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { connect } from 'react-redux';
 import TASK_VALIDATE_SCHEMA from '../../schemas/validateTask';
 import {
@@ -7,6 +7,7 @@ import {
   getTasksThunk,
   getUsersThunk,
 } from '../../store/tasksSlice/tasksSlice';
+import styles from './TasksForm.module.scss';
 
 function TasksForm({ users, getTasks, getUsers, createTask }) {
   const initialValues = {
@@ -34,46 +35,57 @@ function TasksForm({ users, getTasks, getUsers, createTask }) {
       validationSchema={TASK_VALIDATE_SCHEMA}
     >
       {(formProps) => (
-        <Form>
+        <Form className={styles.formWrapper}>
           <h1>TASK FORM</h1>
 
           {users.length !== 0 && (
             <>
-              <label>User name</label>
-              <select
-                name="userId"
-                value={formProps.values.userId}
-                onChange={formProps.handleChange}
-              >
-                {users.map((u) => (
-                  <option key={u.id} value={u.id}>
-                    {u.firstName} {u.lastName}
-                  </option>
-                ))}
-              </select>
+              <label className={styles.userNameWrapper}>
+                User name:
+                <select
+                  className={styles.userFullName}
+                  name="userId"
+                  autoFocus
+                  value={formProps.values.userId}
+                  onChange={formProps.handleChange}
+                >
+                  {users.map((u) => (
+                    <option key={u.id} value={u.id}>
+                      {u.firstName} {u.lastName}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </>
           )}
 
-          <br />
-          <label>
-            Text task
+          <label className={styles.textTaskWrapper}>
+            Text task:
             <Field
+              className={styles.textTask}
               name="body"
               type="text"
               placeholder="To write your task"
               autoFocus
             />
+            <ErrorMessage
+              className={styles.errorTask}
+              name="body"
+              component="p"
+            />
           </label>
 
-          <br />
-          <label>
-            Deadline
-            <Field name="deadline" type="date" />
+          <label className={styles.deadlineWrapper}>
+            Deadline:
+            <Field className={styles.deadline} name="deadline" type="date" />
+            <ErrorMessage
+              className={styles.errorDeadline}
+              name="deadline"
+              component="p"
+            />
           </label>
 
-
-          <br />
-          <button type="submit">SEND</button>
+          <button className={styles.btn} type="submit">SEND TASK</button>
         </Form>
       )}
     </Formik>

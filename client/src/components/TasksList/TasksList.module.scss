@@ -1,0 +1,51 @@
+.titleList {
+  margin-top: 10px;
+  color: darkgray;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 30px;
+  padding-bottom: 20px;
+  color: darkgray;
+  font-weight: bold;
+
+  .numberList {
+    font-size: 40px;
+
+    .userName {
+      font-size: 40px;
+    }
+
+    .task {
+      font-size: 35px;
+    }
+    .deadline {
+      font-size: 35px;
+    }
+
+    .isDoneWrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+
+      .isDone {
+        height: 30px;
+        width: 30px;
+      }
+
+      .iconDone {
+      }
+
+      .iconNotDone {
+      }
+    }
+  }
+}

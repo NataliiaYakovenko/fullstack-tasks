@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+}
+
+.left {
+  flex: 1;
+  background-color: gray;
+  padding: 20px;
+}
+
+.right {
+  flex: 1;
+  background-color: purple;
+  padding: 20px;
+}

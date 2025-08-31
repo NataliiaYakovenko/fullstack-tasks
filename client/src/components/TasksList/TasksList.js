@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react';
+import { FcApproval } from 'react-icons/fc';
+import { FcCancel } from 'react-icons/fc';
+import { FaTrash } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import {
   deleteTaskThunk,
@@ -6,6 +9,7 @@ import {
   getUsersThunk,
   updateTaskThunk,
 } from '../../store/tasksSlice/tasksSlice';
+import styles from './TasksList.module.scss';
 
 const TasksList = ({
   users,
@@ -23,40 +27,57 @@ const TasksList = ({
   }, []);
 
   return (
-    <ul>
-      {tasks.map((t) => (
-        <li key={t.id}>
-          <p>
-            {users.find((u) => u.id === t.userId)?.firstName}{' '}
-            {users.find((u) => u.id === t.userId)?.lastName}
-          </p>
-          <p>{t.body}</p>
-          <p>{t.deadline}</p>
+    <>
+      <h2 className={styles.titleList}>TASKS LIST:</h2>
+      <ol className={styles.listWrapper}>
+        {tasks.map((t) => (
+          <li className={styles.numberList} key={t.id}>
+            <p className={styles.userName}>
+              {users.find((u) => u.id === t.userId)?.firstName}{' '}
+              {users.find((u) => u.id === t.userId)?.lastName}
+            </p>
+            <p className={styles.task}>{t.body}</p>
+            <p className={styles.deadline}>{t.deadline}</p>
 
-          <label>
-            <input
-              type="checkbox"
-              checked={t.isDone}
-              onChange={() => {
-                updateTask(t.id, { ...t, isDone: !t.isDone });
+            <label className={styles.isDoneWrapper}>
+              <input
+                className={styles.isDone}
+                type="checkbox"
+                checked={t.isDone}
+                onChange={() => {
+                  updateTask(t.id, { ...t, isDone: !t.isDone });
+                }}
+              />
+              <span
+                style={{
+                  color: t.isDone ? 'lightgreen' : 'rgb(238, 108, 108)',
+                }}
+              >
+                {t.isDone ? (
+                  <>
+                    <span> Task had done </span>
+                    <FcApproval className={styles.iconDone} />
+                  </>
+                ) : (
+                  <>
+                    <span> Task had not done </span>
+                    <FcCancel className={styles.iconNotDone} />
+                  </>
+                )}
+              </span>
+            </label>
+
+            <button
+              onClick={() => {
+                deleteTask(t.id);
               }}
-            />
-            <span style={{ color: t.isDone ? 'green' : 'red' }}>
-              {t.isDone ? 'Task had done' : 'Task had not done'}
-            </span>
-          </label>
-
-          <br />
-          <button
-            onClick={() => {
-              deleteTask(t.id);
-            }}
-          >
-            DELETE
-          </button>
-        </li>
-      ))}
-    </ul>
+            >
+              <FaTrash />
+            </button>
+          </li>
+        ))}
+      </ol>
+    </>
   );
 };
 
