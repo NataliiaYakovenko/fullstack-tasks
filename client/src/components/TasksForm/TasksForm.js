@@ -85,7 +85,9 @@ function TasksForm({ users, getTasks, getUsers, createTask }) {
             />
           </label>
 
-          <button className={styles.btn} type="submit">SEND TASK</button>
+          <button className={styles.btn} type="submit">
+            SEND TASK
+          </button>
         </Form>
       )}
     </Formik>

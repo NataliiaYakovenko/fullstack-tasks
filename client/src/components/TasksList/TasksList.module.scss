@@ -17,7 +17,9 @@
   font-weight: bold;
 
   .numberList {
+    width: 70%;
     font-size: 40px;
+    position: relative;
 
     .userName {
       font-size: 40px;
@@ -35,16 +37,30 @@
       align-items: center;
       gap: 20px;
       cursor: pointer;
+      margin-bottom: 25px;
 
       .isDone {
         height: 30px;
         width: 30px;
       }
+    }
 
-      .iconDone {
-      }
+    .btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 50px;
+      right: 1px;
 
-      .iconNotDone {
+      .iconBtn {
+        height: 60px;
+        width: 60px;
+        color: darkgrey;
+
+        &:hover {
+          color: rgb(28, 26, 26);
+        }
       }
     }
   }

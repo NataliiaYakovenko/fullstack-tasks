@@ -32,47 +32,50 @@ const TasksList = ({
       <ol className={styles.listWrapper}>
         {tasks.map((t) => (
           <li className={styles.numberList} key={t.id}>
-            <p className={styles.userName}>
-              {users.find((u) => u.id === t.userId)?.firstName}{' '}
-              {users.find((u) => u.id === t.userId)?.lastName}
-            </p>
-            <p className={styles.task}>{t.body}</p>
-            <p className={styles.deadline}>{t.deadline}</p>
+      
+              <p className={styles.userName}>
+                {users.find((u) => u.id === t.userId)?.firstName}{' '}
+                {users.find((u) => u.id === t.userId)?.lastName}
+              </p>
+              <p className={styles.task}>{t.body}</p>
+              <p className={styles.deadline}>{t.deadline}</p>
 
-            <label className={styles.isDoneWrapper}>
-              <input
-                className={styles.isDone}
-                type="checkbox"
-                checked={t.isDone}
-                onChange={() => {
-                  updateTask(t.id, { ...t, isDone: !t.isDone });
-                }}
-              />
-              <span
-                style={{
-                  color: t.isDone ? 'lightgreen' : 'rgb(238, 108, 108)',
-                }}
-              >
-                {t.isDone ? (
-                  <>
-                    <span> Task had done </span>
-                    <FcApproval className={styles.iconDone} />
-                  </>
-                ) : (
-                  <>
-                    <span> Task had not done </span>
-                    <FcCancel className={styles.iconNotDone} />
-                  </>
-                )}
-              </span>
-            </label>
+              <label className={styles.isDoneWrapper}>
+                <input
+                  className={styles.isDone}
+                  type="checkbox"
+                  checked={t.isDone}
+                  onChange={() => {
+                    updateTask(t.id, { ...t, isDone: !t.isDone });
+                  }}
+                />
+                <span
+                  style={{
+                    color: t.isDone ? 'lightgreen' : 'rgb(238, 108, 108)',
+                  }}
+                >
+                  {t.isDone ? (
+                    <>
+                      <span> Task had done </span>
+                      <FcApproval className={styles.iconDone} />
+                    </>
+                  ) : (
+                    <>
+                      <span> Task had not done </span>
+                      <FcCancel className={styles.iconNotDone} />
+                    </>
+                  )}
+                </span>
+              </label>
+            
 
             <button
+              className={styles.btn}
               onClick={() => {
                 deleteTask(t.id);
               }}
             >
-              <FaTrash />
+              <FaTrash className={styles.iconBtn}/>
             </button>
           </li>
         ))}
