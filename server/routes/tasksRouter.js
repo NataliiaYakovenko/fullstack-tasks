@@ -10,7 +10,8 @@ tasksRouter
   .get(taskController.getTasks);
 
 tasksRouter
-.route('/:id')
-.delete(taskController.deleteTaskById);
+  .route('/:id')
+  .put(validateTask, taskController.updateTaskById)
+  .delete(taskController.deleteTaskById);
 
 module.exports = tasksRouter;

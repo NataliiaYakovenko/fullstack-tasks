@@ -31,6 +31,23 @@ module.exports.getTasks = async (req, res, next) => {
   }
 };
 
+module.exports.updateTaskById = async (req, res, next) => {
+  try {
+    const {
+      body,
+      params: { id },
+    } = req;
+
+    const updatedTask = await Task.update(body, { where: { id: id } });
+    if (!updatedTask) {
+      res.status(400).send('Something wrong');
+    }
+    res.status(200).send({ data: updatedTask });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports.deleteTaskById = async (req, res, next) => {
   try {
     const { id } = req.params;
