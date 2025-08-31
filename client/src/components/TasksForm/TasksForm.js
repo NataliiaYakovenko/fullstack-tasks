@@ -33,6 +33,7 @@ function TasksForm({ users, getTasks, getUsers, createTask }) {
       initialValues={initialValues}
       onSubmit={submitHandler}
       validationSchema={TASK_VALIDATE_SCHEMA}
+      enableReinitialize={true}
     >
       {(formProps) => (
         <Form className={styles.formWrapper}>
