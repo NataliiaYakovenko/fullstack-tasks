@@ -11,7 +11,7 @@ import {
 function TasksForm({ users, getTasks, getUsers, createTask }) {
   const initialValues = {
     body: '',
-    userId: users[0]?.id ?? '',
+    userId: users['0']?.id ?? '',
     deadline: '',
     isDone: false,
   };
@@ -70,12 +70,7 @@ function TasksForm({ users, getTasks, getUsers, createTask }) {
             Deadline
             <Field name="deadline" type="date" />
           </label>
-{/* 
-          <br />
-          <label>
-            Is done
-            <Field name="isDone" type="checkbox" />
-          </label> */}
+
 
           <br />
           <button type="submit">SEND</button>

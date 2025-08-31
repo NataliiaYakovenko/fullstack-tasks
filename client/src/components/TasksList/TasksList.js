@@ -4,6 +4,7 @@ import {
   deleteTaskThunk,
   getTasksThunk,
   getUsersThunk,
+  updateTaskThunk,
 } from '../../store/tasksSlice/tasksSlice';
 
 const TasksList = ({
@@ -13,6 +14,7 @@ const TasksList = ({
   error,
   getTasks,
   getUsers,
+  updateTask,
   deleteTask,
 }) => {
   useEffect(() => {
@@ -30,9 +32,23 @@ const TasksList = ({
           </p>
           <p>{t.body}</p>
           <p>{t.deadline}</p>
-          <p>{t.isDone}</p>
+
+          <label>
+            <input
+              type="checkbox"
+              checked={t.isDone}
+              onChange={() => {
+                updateTask(t.id, { ...t, isDone: !t.isDone });
+              }}
+            />
+            <span style={{ color: t.isDone ? 'green' : 'red' }}>
+              {t.isDone ? 'Task had done' : 'Task had not done'}
+            </span>
+          </label>
+
+          <br />
           <button
-            onClickCapture={() => {
+            onClick={() => {
               deleteTask(t.id);
             }}
           >
@@ -48,6 +64,7 @@ const mapStateToProps = ({ tasksData }) => tasksData;
 const mapDispatchToProps = (dispatch) => ({
   getTasks: () => dispatch(getTasksThunk()),
   getUsers: () => dispatch(getUsersThunk()),
+  updateTask: (id, payload) => dispatch(updateTaskThunk({ id, payload })),
   deleteTask: (id) => dispatch(deleteTaskThunk(id)),
 });
 
