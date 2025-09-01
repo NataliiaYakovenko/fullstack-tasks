@@ -9,21 +9,39 @@
 }
 
 .left {
-  width: 50%;         
+  width: 50%;
   background-color: gray;
   padding: 20px;
-  position: fixed;     
+  position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;       
+  height: 100vh;
   overflow-y: auto;
 }
 
 .right {
-  margin-left: 50%;    
+  margin-left: 50%;
   width: 50%;
   background-color: purple;
   padding: 20px;
   overflow-y: auto;
   height: 100vh;
+}
+
+@media (max-width: 800px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .left {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .right {
+    margin-left: 0;
+    width: 100%;
+    height: auto;
+  }
 }

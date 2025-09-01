@@ -65,3 +65,44 @@
     }
   }
 }
+
+@media (max-width: 1347px) {
+  .titleList {
+    font-size: 40px;
+  }
+
+  .listWrapper {
+    font-size: 30px;
+
+    .numberList {
+      font-size: 30px;
+
+      .userName {
+        font-size: 30px;
+      }
+
+      .task {
+        font-size: 30px;
+      }
+      .deadline {
+        font-size: 30px;
+      }
+
+      .isDoneWrapper {
+        font-size: 20px;
+
+        .isDone {
+          height: 20px;
+          width: 20px;
+        }
+      }
+
+      .btn {
+        .iconBtn {
+          height: 30px;
+          width: 30px;
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 .formWrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,3 +105,147 @@
     }
   }
 }
+
+@media (max-width: 1347px) {
+  .formWrapper {
+    font-size: 30px;
+
+    .userNameWrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .textTaskWrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+
+      .errorTask {
+        top: 75px;
+      }
+    }
+
+    .deadlineWrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+
+      .errorDeadline {
+        top: 75px;
+        left: 150px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .formWrapper {
+    .textTaskWrapper {
+      .errorTask {
+        top: 75px;
+        left: 130px;
+      }
+    }
+
+    .deadlineWrapper {
+      .errorDeadline {
+        top: 75px;
+        left: 110px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .formWrapper {
+    font-size: 35px;
+
+    .userNameWrapper {
+      margin-top: 20px;
+    }
+
+    .textTaskWrapper {
+      margin-top: 20px;
+
+      .errorTask {
+        top: 85px;
+        left: 260px;
+      }
+    }
+
+    .deadlineWrapper {
+      margin-top: 25px;
+      .errorDeadline {
+        top: 85px;
+        left: 230px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .formWrapper {
+    font-size: 25px;
+
+    .userNameWrapper {
+      margin-top: 10px;
+    }
+
+    .textTaskWrapper {
+      margin-top: 20px;
+
+      .errorTask {
+        top: 65px;
+        left: 100px;
+      }
+    }
+
+    .deadlineWrapper {
+      margin-top: 25px;
+      .errorDeadline {
+        top: 65px;
+        left: 70px;
+      }
+    }
+
+    .btn {
+      margin-top: 30px;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .formWrapper {
+    font-size: 25px;
+
+    .userNameWrapper {
+      margin-top: 10px;
+    }
+
+    .textTaskWrapper {
+      margin-top: 20px;
+
+      .errorTask {
+        top: 65px;
+        left: 100px;
+      }
+    }
+
+    .deadlineWrapper {
+      margin-top: 25px;
+      .errorDeadline {
+        top: 65px;
+        left: 70px;
+      }
+    }
+
+    .btn {
+      margin-top: 30px;
+    }
+  }
+}
+
