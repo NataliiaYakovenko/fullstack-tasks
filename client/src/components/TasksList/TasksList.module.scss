@@ -106,3 +106,46 @@
     }
   }
 }
+
+
+@media (max-width: 375px) {
+  .titleList {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .listWrapper {
+    font-size: 20px;
+
+    .numberList {
+       font-size: 20px;
+
+      .userName {
+         font-size: 20px;
+      }
+
+      .task {
+    font-size: 20px;
+      }
+      .deadline {
+        font-size: 20px;
+      }
+
+      .isDoneWrapper {
+        font-size: 15px;
+
+        .isDone {
+          height: 10px;
+          width: 10px;
+        }
+      }
+
+      .btn {
+        .iconBtn {
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
+  }
+}

@@ -218,34 +218,23 @@
   }
 }
 
-@media (max-width: 425px) {
+@media (max-width: 320px) {
   .formWrapper {
-    font-size: 25px;
-
-    .userNameWrapper {
-      margin-top: 10px;
-    }
+    font-size: 15px;
 
     .textTaskWrapper {
-      margin-top: 20px;
-
       .errorTask {
-        top: 65px;
-        left: 100px;
-      }
-    }
-
-    .deadlineWrapper {
-      margin-top: 25px;
-      .errorDeadline {
-        top: 65px;
+        top: 45px;
         left: 70px;
+        font-size: 13px;
       }
     }
-
-    .btn {
-      margin-top: 30px;
+    .deadlineWrapper {
+      .errorDeadline {
+        top: 45px;
+        left: 60px;
+        font-size: 13px;
+      }
     }
   }
 }
-
